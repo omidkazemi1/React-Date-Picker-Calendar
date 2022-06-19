@@ -19,8 +19,8 @@ const months = [
 
 const Header = ({ currentDate, onNextMonth, onPrevMonth }) => {
     return (
-        <div className="flex justify-between items-center mb-5">
-            <button>
+        <div className="flex justify-between items-center">
+            <button className="grid place-items-center p-2 hover:bg-blue-200 transition-all duration-300 rounded-full">
                 <LeftArrow onClick={onPrevMonth} />
             </button>
 
@@ -32,7 +32,9 @@ const Header = ({ currentDate, onNextMonth, onPrevMonth }) => {
                 <span className="font-light">{currentDate.getFullYear()}</span>
             </div>
 
-            <button onClick={onNextMonth}>
+            <button
+                className="grid place-items-center p-2 hover:bg-blue-200 transition-all duration-300 rounded-full"
+                onClick={onNextMonth}>
                 <RightArrow />
             </button>
         </div>

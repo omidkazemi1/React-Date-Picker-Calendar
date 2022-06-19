@@ -64,6 +64,13 @@ const DatePicker = () => {
         setPickedDate(new Date(date));
     };
 
+    const todayHandler = () => {
+        const todayDate = new Date();
+        todayDate.setHours(0, 0, 0, 0);
+        setPickedDate(todayDate);
+        setCurrentDate(todayDate);
+    };
+
     useEffect(() => {
         setMonthDays(() => getMonthDays());
     }, [getMonthDays]);
@@ -75,7 +82,7 @@ const DatePicker = () => {
                 onNextMonth={nextMonthHanlder}
                 onPrevMonth={prevMonthHanlder}
             />
-            <div className="grid grid-cols-7">
+            <div className="grid grid-cols-7 my-3">
                 <WeekDays />
                 {monthDays.map(day => (
                     <MonthDay
@@ -86,6 +93,11 @@ const DatePicker = () => {
                         onPickDate={pickDateHandler}
                     />
                 ))}
+            </div>
+            <div className="flex justify-center items-center">
+                <button className="text-blue-500" onClick={todayHandler}>
+                    Today
+                </button>
             </div>
         </div>
     );
