@@ -1,14 +1,15 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Header from "./Header";
 import MonthDay from "./MonthDay";
 import WeekDays from "./WeekDays";
 
 const DatePicker = () => {
     const [currentDate, setCurrentDate] = useState(new Date());
-    const [monthDays, setMonthDays] = useState([]);
     const [pickedDate, setPickedDate] = useState(null);
 
     const getMonthDays = useCallback(() => {
+        console.log("getMonthDays fire!");
+
         const date = new Date(currentDate);
         date.setHours(0, 0, 0, 0);
         date.setDate(1);
@@ -39,6 +40,8 @@ const DatePicker = () => {
 
         return days;
     }, [currentDate]);
+
+    const monthDays = useMemo(() => getMonthDays(), [getMonthDays]);
 
     const nextMonthHanlder = () => {
         setCurrentDate(
@@ -71,18 +74,18 @@ const DatePicker = () => {
         setCurrentDate(todayDate);
     };
 
-    useEffect(() => {
-        setMonthDays(() => getMonthDays());
-    }, [getMonthDays]);
+    // useEffect(() => {
+    //     setMonthDays(() => getMonthDays());
+    // }, [getMonthDays]);
 
     return (
-        <div className="p-5 rounded-xl shadow-lg shadow-blue-100 bg-blue-50">
+        <div className="p-3 rounded-xl shadow-lg shadow-violet-100 bg-violet-50">
             <Header
                 currentDate={currentDate}
                 onNextMonth={nextMonthHanlder}
                 onPrevMonth={prevMonthHanlder}
             />
-            <div className="grid grid-cols-7 my-3">
+            <div className="grid grid-cols-7 gap-1 my-3">
                 <WeekDays />
                 {monthDays.map(day => (
                     <MonthDay
@@ -95,7 +98,9 @@ const DatePicker = () => {
                 ))}
             </div>
             <div className="flex justify-center items-center">
-                <button className="text-blue-500" onClick={todayHandler}>
+                <button
+                    className="text-violet-500 font-medium text-sm"
+                    onClick={todayHandler}>
                     Today
                 </button>
             </div>

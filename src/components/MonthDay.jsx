@@ -6,7 +6,7 @@ const Days = ({ day, currentDate, pickedDate, onPickDate }) => {
         day.getTime() === pickedDate?.getTime()
     ) {
         return (
-            <div className="m-0.5 grid place-items-center text-center text-sm bg-blue-200 w-9 h-9 text-blue-500 rounded-full shadow-blue-300 shadow-lg font-light">
+            <div className="grid place-items-center text-center text-xs bg-violet-200 w-8 h-8 text-violet-500 rounded-full shadow-violet-300 shadow-lg font-light">
                 {day.getDate()}
             </div>
         );
@@ -15,20 +15,20 @@ const Days = ({ day, currentDate, pickedDate, onPickDate }) => {
         day.getTime() !== pickedDate?.getTime()
     ) {
         return (
-            <div className="m-0.5 grid place-items-center text-center text-sm w-9 h-9 text-neutral-400 font-light">
+            <div className="grid place-items-center text-center text-xs w-8 h-8 text-neutral-400 font-light">
                 {day.getDate()}
             </div>
         );
     } else if (day.getTime() === pickedDate?.getTime()) {
         return (
-            <button className="m-0.5 text-center text-sm bg-blue-500 text-blue-100 rounded-full w-9 h-9 shadow-blue-300 shadow-lg transition-all duration-100">
+            <button className="text-center text-xs font-semibold bg-violet-500 text-violet-100 rounded-full w-8 h-8 shadow-violet-300 shadow-lg transition-all duration-100">
                 {day.getDate()}
             </button>
         );
     } else {
         return (
             <button
-                className="m-0.5 text-center text-sm w-9 h-9 hover:bg-blue-200 transition-all duration-100 rounded-full"
+                className="text-center text-xs w-8 h-8 hover:bg-violet-200 transition-all duration-100 rounded-full"
                 onClick={() => onPickDate(day)}>
                 {day.getDate()}
             </button>

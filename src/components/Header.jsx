@@ -20,11 +20,7 @@ const months = [
 const Header = ({ currentDate, onNextMonth, onPrevMonth }) => {
     return (
         <div className="flex justify-between items-center">
-            <button className="grid place-items-center p-2 hover:bg-blue-200 transition-all duration-300 rounded-full">
-                <LeftArrow onClick={onPrevMonth} />
-            </button>
-
-            <div>
+            <div className="px-2">
                 <span className="font-semibold">
                     {months[currentDate.getMonth()]}
                 </span>
@@ -32,11 +28,17 @@ const Header = ({ currentDate, onNextMonth, onPrevMonth }) => {
                 <span className="font-light">{currentDate.getFullYear()}</span>
             </div>
 
-            <button
-                className="grid place-items-center p-2 hover:bg-blue-200 transition-all duration-300 rounded-full"
-                onClick={onNextMonth}>
-                <RightArrow />
-            </button>
+            <div className="flex">
+                <button className="grid place-items-center w-8 h-8 hover:bg-violet-200 transition-all duration-300 rounded-full">
+                    <LeftArrow onClick={onPrevMonth} />
+                </button>
+
+                <button
+                    className="grid place-items-center w-8 h-8 hover:bg-violet-200 transition-all duration-300 rounded-full"
+                    onClick={onNextMonth}>
+                    <RightArrow />
+                </button>
+            </div>
         </div>
     );
 };
