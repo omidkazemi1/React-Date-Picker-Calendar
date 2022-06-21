@@ -1,47 +1,16 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import Header from "./Header";
-import MonthDay from "./MonthDay";
 import WeekDays from "./WeekDays";
+import MonthDays from "./MonthDays";
 
 const DatePicker = () => {
-    const [currentDate, setCurrentDate] = useState(new Date());
-    const [pickedDate, setPickedDate] = useState(null);
-
-    const getMonthDays = useCallback(() => {
-        console.log("getMonthDays fire!");
-
-        const date = new Date(currentDate);
+    const [currentDate, setCurrentDate] = useState(() => {
+        const date = new Date();
+        date.toLocaleDateString("fa-IR");
         date.setHours(0, 0, 0, 0);
-        date.setDate(1);
-        date.setDate(-date.getDay() + 1);
-
-        const days = [];
-        const prevMonth = new Date(
-            currentDate.getFullYear(),
-            currentDate.getMonth() - 1,
-            1
-        ).getMonth();
-        const nextMonth = new Date(
-            currentDate.getFullYear(),
-            currentDate.getMonth() + 1,
-            1
-        ).getMonth();
-        const currentMonth = currentDate.getMonth();
-
-        while (
-            (date.getMonth() === currentMonth ||
-                date.getMonth() === prevMonth ||
-                date.getMonth() === nextMonth) &&
-            days.length <= 41
-        ) {
-            days.push(new Date(date));
-            date.setDate(date.getDate() + 1);
-        }
-
-        return days;
-    }, [currentDate]);
-
-    const monthDays = useMemo(() => getMonthDays(), [getMonthDays]);
+        return date;
+    });
+    const [pickedDate, setPickedDate] = useState(null);
 
     const nextMonthHanlder = () => {
         setCurrentDate(
@@ -71,35 +40,27 @@ const DatePicker = () => {
         const todayDate = new Date();
         todayDate.setHours(0, 0, 0, 0);
         setPickedDate(todayDate);
-        setCurrentDate(todayDate);
+
+        todayDate.getTime() !== currentDate.getTime() &&
+            setCurrentDate(todayDate);
     };
 
-    // useEffect(() => {
-    //     setMonthDays(() => getMonthDays());
-    // }, [getMonthDays]);
-
     return (
-        <div className="p-3 rounded-xl shadow-lg shadow-violet-100 bg-violet-50">
+        <div className="overflow-hidden p-3 rounded-xl shadow-lg shadow-green-100 bg-green-50">
             <Header
                 currentDate={currentDate}
                 onNextMonth={nextMonthHanlder}
                 onPrevMonth={prevMonthHanlder}
             />
-            <div className="grid grid-cols-7 gap-1 my-3">
-                <WeekDays />
-                {monthDays.map(day => (
-                    <MonthDay
-                        key={day}
-                        day={day}
-                        currentDate={currentDate}
-                        pickedDate={pickedDate}
-                        onPickDate={pickDateHandler}
-                    />
-                ))}
-            </div>
-            <div className="flex justify-center items-center">
+            <WeekDays />
+            <MonthDays
+                currentDate={currentDate}
+                pickedDate={pickedDate}
+                pickDateHandler={pickDateHandler}
+            />
+            <div className="flex justify-center items-center mt-3">
                 <button
-                    className="text-violet-500 font-medium text-sm"
+                    className="text-green-500 font-medium text-sm"
                     onClick={todayHandler}>
                     Today
                 </button>

@@ -4,7 +4,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                "dm-mono": "'DM Mono', monospace",
+                barlow: "'Barlow', sans-serif;",
             },
         },
     },

@@ -29,12 +29,12 @@ const Header = ({ currentDate, onNextMonth, onPrevMonth }) => {
             </div>
 
             <div className="flex">
-                <button className="grid place-items-center w-8 h-8 hover:bg-violet-200 transition-all duration-300 rounded-full">
+                <button className="grid place-items-center w-8 h-8 hover:bg-green-200 transition-all duration-300 rounded-full">
                     <LeftArrow onClick={onPrevMonth} />
                 </button>
 
                 <button
-                    className="grid place-items-center w-8 h-8 hover:bg-violet-200 transition-all duration-300 rounded-full"
+                    className="grid place-items-center w-8 h-8 hover:bg-green-200 transition-all duration-300 rounded-full"
                     onClick={onNextMonth}>
                     <RightArrow />
                 </button>
