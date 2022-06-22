@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from "react";
 import Day from "./Day";
 import { AnimatePresence, motion } from "framer-motion";
 import useMeasure from "react-use-measure";
-import usePrevious from "../hooks/usePrevious";
+import usePrevious from "../../hooks/usePrevious";
 
 const variants = {
     enter: ({ direction, width }) => ({
@@ -13,12 +13,11 @@ const variants = {
     exit: ({ direction, width }) => ({
         x: direction * -width * 1.1,
         opacity: 0,
-        scale: 0.9,
     }),
 };
 
 const MonthDays = ({ currentDate, pickedDate, pickDateHandler }) => {
-    const [ref, { height, width }] = useMeasure();
+    const [ref, { width }] = useMeasure();
     const prev = usePrevious(currentDate.getTime());
     const direction = currentDate > prev ? 1 : -1;
 
@@ -56,7 +55,7 @@ const MonthDays = ({ currentDate, pickedDate, pickDateHandler }) => {
     const monthDays = useMemo(() => getMonthDays(), [getMonthDays]);
 
     return (
-        <div className="relative" style={{ height: height ? height : 202 }}>
+        <div className="relative" style={{ height: 202 }}>
             <AnimatePresence initial={false} custom={{ direction, width }}>
                 <motion.div
                     key={currentDate.getTime()}

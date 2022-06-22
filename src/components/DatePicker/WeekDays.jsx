@@ -8,7 +8,7 @@ const WeekDays = () => {
             {Days.map(day => (
                 <div
                     key={day}
-                    className="text-center font-medium text-green-400 text-sm w-9 h-9">
+                    className="text-center font-medium text-green-500 text-sm dark:text-cyan-600 w-9 h-9">
                     {day}
                 </div>
             ))}

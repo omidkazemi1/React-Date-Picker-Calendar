@@ -46,7 +46,7 @@ const DatePicker = () => {
     };
 
     return (
-        <div className="overflow-hidden p-3 rounded-xl shadow-lg shadow-green-100 bg-green-50">
+        <div className="overflow-hidden p-3 rounded-xl shadow-lg dark:bg-slate-700 ">
             <Header
                 currentDate={currentDate}
                 onNextMonth={nextMonthHanlder}
@@ -60,7 +60,7 @@ const DatePicker = () => {
             />
             <div className="flex justify-center items-center mt-3">
                 <button
-                    className="text-green-500 font-medium text-sm"
+                    className="text-green-500 dark:text-cyan-500 font-medium text-sm"
                     onClick={todayHandler}>
                     Today
                 </button>
