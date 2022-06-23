@@ -6,7 +6,7 @@ const Day = ({ day, currentDate, pickedDate, onPickDate }) => {
         day.getTime() === pickedDate?.getTime()
     ) {
         return (
-            <div className="grid place-items-center text-center text-xs bg-green-200 w-8 h-8 text-green-500 rounded-full shadow-green-300 shadow-lg dark:bg-cyan-800 dark:text-cyan-300 dark:shadow-cyan-700">
+            <div className="grid place-items-center text-center text-xs bg-green-200 w-8 h-8 text-green-500 rounded-full shadow-green-300 shadow-lg dark:bg-cyan-800 dark:text-cyan-300 dark:shadow-cyan-800">
                 {day.getDate()}
             </div>
         );
