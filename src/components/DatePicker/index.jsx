@@ -1,11 +1,9 @@
-import { AnimatePresence } from "framer-motion";
 import React, { useRef, useState } from "react";
 import Calendar from "../Calendar";
 import Input from "../Input";
 
-const DatePicker = ({ placeholder }) => {
+const DatePicker = ({ placeholder, label, pickedDate, onPickDate }) => {
     const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
-    const [pickedDate, setPickedDate] = useState(null);
     const datePickerRef = useRef(null);
     const inputRef = useRef(null);
     let inputValue = pickedDate
@@ -32,22 +30,28 @@ const DatePicker = ({ placeholder }) => {
         }
     };
 
+    const closeCalendarHandler = () => {
+        setIsOpenDatePicker(false);
+    };
+
     return (
         <div className="relative">
             <Input
                 ref={inputRef}
+                label={label}
                 placeholder={placeholder}
                 value={inputValue}
                 onFocus={focusHandler}
                 onChange={event => event.preventDefault()}
-                className="w-64 py-1 px-2 rounded-md outline-none border-2 transition-all duration-75 border-green-500 focus:bg-green-50 dark:bg-slate-900 dark:border-cyan-700 dark:text-cyan-50 dark:focus:bg-slate-700"
+                className="w-64 rounded-md border-2 border-green-500 py-1 px-2 outline-none transition-all duration-75 focus:bg-green-50 dark:border-cyan-700 dark:bg-slate-900 dark:text-cyan-50 dark:focus:bg-slate-700"
             />
 
             <Calendar
                 ref={datePickerRef}
                 open={isOpenDatePicker}
                 pickedDate={pickedDate}
-                onChangePickedDate={setPickedDate}
+                onChangePickedDate={onPickDate}
+                onClose={closeCalendarHandler}
             />
         </div>
     );
