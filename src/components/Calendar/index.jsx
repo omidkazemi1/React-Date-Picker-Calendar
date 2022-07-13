@@ -60,7 +60,7 @@ const Calendar = forwardRef(
                             scaleY: 0.5,
                             transition: { duration: 0.2 },
                         }}
-                        className="absolute my-1.5 w-max origin-top overflow-hidden p-3 bg-white rounded-xl shadow-lg dark:bg-slate-700">
+                        className="absolute my-2 w-max origin-top overflow-hidden rounded-xl bg-white p-3 shadow-lg dark:bg-slate-700 dark:shadow-2xl dark:shadow-cyan-900">
                         <Header
                             currentDate={currentDate}
                             onNextMonth={nextMonthHanlder}
@@ -72,9 +72,9 @@ const Calendar = forwardRef(
                             pickedDate={pickedDate}
                             pickDateHandler={pickDateHandler}
                         />
-                        <div className="flex justify-center items-center mt-3">
+                        <div className="mt-3 flex items-center justify-center">
                             <button
-                                className="text-green-500 dark:text-cyan-500 font-medium text-sm"
+                                className="text-sm font-medium text-green-500 dark:text-cyan-500"
                                 onClick={todayHandler}>
                                 Today
                             </button>

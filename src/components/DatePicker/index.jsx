@@ -43,7 +43,6 @@ const DatePicker = ({ placeholder, label, pickedDate, onPickDate }) => {
                 value={inputValue}
                 onFocus={focusHandler}
                 onChange={event => event.preventDefault()}
-                className="w-64 rounded-md border-2 border-green-500 py-1 px-2 outline-none transition-all duration-75 focus:bg-green-50 dark:border-cyan-700 dark:bg-slate-900 dark:text-cyan-50 dark:focus:bg-slate-700"
             />
 
             <Calendar
